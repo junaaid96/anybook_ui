@@ -1,8 +1,9 @@
+import 'package:anybook_ui/library_page.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(LibraryPage());
 }
 
 class MyApp extends StatefulWidget {
@@ -27,7 +28,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       routes: {
         // When navigating to the "/" route, build the FirstScreen widget.
-        '/home': (context) => MyApp(),
+        // '/home': (context) => MyApp(),
         // '/bookself': (context) => PopularList(),
         // '/library': (context) => PopularList(),
         // '/profile': (context) => PopularList(),
@@ -95,7 +96,7 @@ class _MyAppState extends State<MyApp> {
                       ),
                       Text(
                         '>> A note to you, the reader',
-                        style: TextStyle(color: Colors.green),
+                        style: TextStyle(color: Colors.grey),
                       )
                     ],
                   ),
@@ -157,11 +158,11 @@ class _MyAppState extends State<MyApp> {
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.book),
-              label: 'Bookself',
+              label: 'Library',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.copy),
-              label: 'Library',
+              label: 'Bookself',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.face),
@@ -170,16 +171,7 @@ class _MyAppState extends State<MyApp> {
           ],
           currentIndex: _selectedIndex,
           selectedItemColor: Color.fromARGB(255, 43, 142, 223),
-          onTap: (index) {
-            switch (index) {
-              case 0:
-                Navigator.pushNamed(context, "/home");
-                break;
-              case 2:
-                Navigator.pushNamed(context, "/library");
-                break;
-            }
-          },
+          onTap: _onItemTapped,
         ),
       ),
     );
